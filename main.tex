@@ -122,7 +122,7 @@ with $\omega_n = n \omega_1$ and $\omega_m = m \omega_2$, and complex coefficien
 \begin{equation}\label{eq:frrcff}
 	\pp_{n,m}  = \mathscr{F}\{\PP(\omega_n+\omega_m)\} =\int_{0}^{T_L} dt \PP(t) e^{i(\omega_n + \omega_m) t}.
 \end{equation}
-To obtain the optical susceptibilities of order $n+m$ at frequency $\omega_1+\omega_2$ one needs to calculate the $\pp_{n+m}$ of Eq.~\eqref{eq:frrexp}, proportional to $\susc{n+m}$ by the $n$-th power of the $\efield_1$ and $m$-th power of the $\efield_2$. 
+To obtain the optical susceptibilities of order $n+m$ at frequency $\omega_1+\omega_2$ one needs to calculate the $\pp_{n,m}$ of Eq.~\eqref{eq:frrexp}, proportional to $\susc{n+m}$ by the $n$-th power of the $\efield_1$ and $m$-th power of the $\efield_2$. 
 However, the expression in Eq.~\eqref{eq:frrcff} is not the most computationally convenient since one needs a very short time step---significantly shorter than the one needed to integrate the EOMs---to perform the integration with sufficient accuracy. As an alternative we use directly Eq.~\eqref{eq:frrexp}: we truncate the Fourier series to an order $S$ larger than the one of the response function we are interested in. We sample $(2S+1)^2$ values $\PP_i\equiv\PP(t_i)$ within a period $T_L$ if possible or otherwise the largest period between $T_1$ and $T_2$, as illustrated in Figure~\ref{fg:ptanalysis}. Then Eq.~\eqref{eq:frrexp} reads as a system of linear equations 
 \be
 {\cal F}_{i(n,m)} p^\alpha_{n,m} = P^\alpha_i,
