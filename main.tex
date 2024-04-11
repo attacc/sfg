@@ -111,26 +111,24 @@ Mike Pionteck, Simone Sanna, Claudio Attaccalite\textsuperscript{3,4}
 
 
 \section{Analysis of the respone}
-In these notes we generalized the approch developed in Ref.~\cite{Attaccalite2013,} to more than one external field.
- Then we run the simulations for a time much larger than $1/\gamma_{\text{deph}}$ and sample $\PP(t)$ close to the end of the simulation, see Figure~\ref{fg:ptanalysis}.
+In these notes we generalized the approch developed in Ref.~\cite{Attaccalite2013} to more than one external field. Here we consider the perturbation of the laser fields with frequencies $\omega_1$ and $\omega_2$.\\
+We run the simulations for a time much larger than the dephasing time $1/\gamma_{\text{deph}}$ and sample $\PP(t)$ close to the end of the simulation, as explained in Ref.~\cite{Attaccalite2013}.
 Since $\gamma_{\text{deph}}$ determines also the spectral broadening, we cannot choose it arbitrary small. For example in the present calculations we have chosen $1/\gamma_{\text{deph}}$ of 6 fs that corresponds to a broadening of approximately 0.2 eV (comparable with the experimental one) and thus we run the simulations for 50-55 fs.\\
-Once all the eigenfrequencies of the system are filtered out, the remaining polarization $\PP(t)$ is a periodic function of period $T_L =\frac{2\pi}{\omega_L}$, where $\omega_L$ is the frequency of the external perturbation and can be expanded in a Fourier series
+Once all the eigenfrequencies of the system are filtered out, the remaining polarization $\PP(t)$ is a periodic function of period $T_L$ equal to the least common multiple of $T_1=\frac{2\pi}{\omega_1}$ and  $T_2=\frac{2\pi}{\omega_2}$  , where $\omega_1,\omega_2$ are the frequencies of the external perturbations and can be expanded in a Fourier series as
 \be\label{eq:frrexp}
-\PP(t) = \sum_{n=-\infty}^{+\infty} \pp_n e^{-i\omega_n t},
+\PP(t) = \sum_{n,m=-\infty}^{+\infty} \pp_{n+m} e^{-i(\omega_n+\omega_m) t},
 \ee  
-with $\omega_n = n \omega_L$, and complex coefficients:
+with $\omega_n = n \omega_1$ and $\omega_m = m \omega_2$, and complex coefficients:
 \begin{equation}\label{eq:frrcff}
- \pp_n  = \mathscr{F}\{\PP(\omega_n)\} =\int_{0}^{T_L} dt \PP(t) e^{i\omega_n t}.
+	\pp_{n+m}  = \mathscr{F}\{\PP(\omega_n+\omega_m)\} =\int_{0}^{T_L} dt \PP(t) e^{i(\omega_n + \omega_m) t}.
 \end{equation}
-To obtain the optical susceptibilities of order $n$ at frequency $\omega_L$ one needs to calculate the $\pp_n$ of Eq.~\eqref{eq:frrexp}, proportional to $\susc n$ by the $n$-th power of the $\efield_0$. 
-However, the expression in Eq.~\eqref{eq:frrcff} is not the most computationally convenient since one needs a very short time step---significantly shorter than the one needed to integrate the EOMs---to perform the integration with sufficient accuracy. As an alternative we use directly Eq.~\eqref{eq:frrexp}: we truncate the Fourier series to an order $S$ larger than the one of the response function we are interested in. We sample $2S+1$ values $\PP_i\equiv\PP(t_i)$ within a period $T_L$, as illustrated in Figure~\ref{fg:ptanalysis}. Then Eq.~\eqref{eq:frrexp} reads as a system of linear equations 
+To obtain the optical susceptibilities of order $n+m$ at frequency $\omega_1+\omega_2$ one needs to calculate the $\pp_{n+m}$ of Eq.~\eqref{eq:frrexp}, proportional to $\susc{n+m}$ by the $n$-th power of the $\efield_1$ and $m$-th power of the $\efield_2$. 
+However, the expression in Eq.~\eqref{eq:frrcff} is not the most computationally convenient since one needs a very short time step---significantly shorter than the one needed to integrate the EOMs---to perform the integration with sufficient accuracy. As an alternative we use directly Eq.~\eqref{eq:frrexp}: we truncate the Fourier series to an order $S$ larger than the one of the response function we are interested in. We sample $(2S+1)^2$ values $\PP_i\equiv\PP(t_i)$ within a period $T_L$ if possible or otherwise the largest period between $T_1$ and $T_2$, as illustrated in Figure~\ref{fg:ptanalysis}. Then Eq.~\eqref{eq:frrexp} reads as a system of linear equations 
 \be
-{\cal F}_{in} p^\alpha_n = P^\alpha_i,
+{\cal F}_{i(n+m)} p^\alpha_{n+m} = P^\alpha_i,
 \label{eq:fouinv}
 \ee 
-from which the component $p^\alpha_n$ of $\pp_n$ in the $\alpha$ direction is found by inversion of the $(2S+1)\times(2S+1)$ Fourier matrix ${\cal F}_{in} \equiv \exp(-i\omega_n t_i)$. We found that the second harmonic generation converges with S equal to 4 while the third harmonic requires S equal to 6. Finally we noticed that averaging averaging the results on more periods can slightly reduce the numerical error in the signal analysis. \\
-Alternatively one can opt for a slow switch on of the electric field as in Takimoto et al.,\cite{takimoto:154114} so that no eigenfrequencies of the system are excited, and avoid to introduce imaginary terms in the Hamiltonian. We found, however, that the latter approach also requires long simulations, and on the other hand, it is less straightforward to extract the $\susc n$.
-
+from which the component $p^\alpha_{n+m}$ of $\pp_{n+m}$ in the $\alpha$ direction is found by inversion of the $(2S+1)^2\times(2S+1)^2$ Fourier matrix ${\cal F}_{i(n+m)} \equiv \exp[-i(\omega_n +\omega_m)t_i]$. We found that in presence of more than one field the matrix could be degenerate when field have comensurable frequencies and so on, in these cases we used single-value decomposition to construct the pseudo-inverse that is used to estimated the non-linear coefficents. We found in general that the second harmonic generation converges with S equal to 4 while the third harmonic requires S equal to 6.
 \section{Conclusions}
 %\section*{Acknowledgments}
 \section*{Acknowledgments}
