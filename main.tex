@@ -1,0 +1,142 @@
+%\documentclass[twocolumn,showpacs,prl,superscriptaddress,aps,floatfix]{revtex4-1}
+%\documentclass[preprint,showpacs,prb,superscriptaddress,aps,floatfix]{revtex4-1}
+\documentclass[submission, Phys]{SciPost}
+
+
+\usepackage{bm}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{lineno}
+\usepackage{comment}
+\usepackage[caption=false]{subfig} % <=== "caption=false" added
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amsmath,mleftright,mathtools}
+\usepackage{mathrsfs}
+
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+
+\newcommand{\torvergata}{University of Rome Tor Vergata, Rome, Italy}
+\newcommand{\piim}{Universit\'e Aix-Marseille, Laboratoire de Physique des Interactions Ioniques et Moléculaires (PIIM), UMR CNRS 7345, F-13397 Marseille, France}
+\newcommand{\cinam}{CNRS/Aix-Marseille Universit\'e, Centre Interdisciplinaire de Nanoscience de Marseille UMR 7325 Campus de Luminy, 13288 Marseille cedex 9, France}
+\newcommand{\etsf}{European Theoretical Spectroscopy Facilities (ETSF)}
+
+\newcommand{\lv}{{\bf a}}
+\newcommand{\bb}{{\bf b}}
+\newcommand{\uu}{{\bf u}}
+\newcommand{\qq}{{\bf q}}
+\newcommand{\hh}{{\bf h}}
+\newcommand{\rr}{{\bf r}}
+\newcommand{\pp}{{\bf p}}
+\newcommand{\PP}{{\bf P}}
+\newcommand{\kk}{{\bf k}}
+\newcommand{\HH}{{\bf H}}
+\newcommand{\GG}{{\bf G}}
+\newcommand{\SiS}{{\bf \Sigma}}
+\newcommand{\VV}{{\bf V}}
+\newcommand{\UU}{{\bf U}}
+\newcommand{\w}{\omega}
+\newcommand{\tf}{\textbf}
+\newcommand{\bo}{\mathbf}
+\newcommand{\br}{{\bf r}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\ben}{\begin{equation*}}
+\newcommand{\een}{\end{equation*}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bean}{\begin{eqnarray*}}
+\newcommand{\eean}{\end{eqnarray*}}
+\newcommand{\nup}{n_{\uparrow}}
+\newcommand{\ndown}{n_{\downarrow}}
+\newcommand{\Id}[1] {\int \! \! {\rm d}^3 #1}
+\renewcommand{\v}[1]{{\bf #1}}
+\renewcommand{\[}{\left[}
+\renewcommand{\]}{\right]}
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+\def\efield{\mathbf{\cal E}} 
+\def\ket#1{\vert#1\rangle}
+\def\bra#1{\langle#1\vert}
+\def\susc#1{\chi^{(#1)}}
+\def\ket#1{\vert#1\rangle}
+\def\bra#1{\langle#1\vert}
+\def\ai{\emph{ab-initio}\ }
+
+
+\begin{document}
+
+%\title{Excitons under strain: light absorption and emission \\ in strained hexagonal boron nitride}
+
+\begin{center}{\Large \textbf{Sum-frequency generation}}\end{center}
+
+\begin{center}
+
+Mike Pionteck, Simone Sanna, Claudio Attaccalite\textsuperscript{3,4}
+\end{center}
+
+%\author{P. Lechifflart}
+%\affiliation{\cinam}
+%\author{F. Paleari}
+%\affiliation{\cnr}
+%\affiliation{\cnrmodena}
+%\author{C. Attaccalite}
+%\affiliation{\cinam}
+%\affiliation{\etsf}
+
+
+\begin{center}
+{\bf 1} \torvergata
+\\
+{\bf 2} \piim
+\\
+{\bf 3} \cinam
+\\
+{\bf 4} \etsf
+\\
+% TODO: provide email address of corresponding author
+\end{center}
+
+\date{\today}
+
+\begin{abstract}
+
+\end{abstract}
+
+\vspace{10pt}
+\noindent\rule{\textwidth}{1pt}
+\tableofcontents\thispagestyle{fancy}
+\noindent\rule{\textwidth}{1pt}
+\vspace{10pt}
+
+
+\section{Analysis of the respone}
+In these notes we generalized the approch developed in Ref.~\cite{Attaccalite2013,} to more than one external field.
+ Then we run the simulations for a time much larger than $1/\gamma_{\text{deph}}$ and sample $\PP(t)$ close to the end of the simulation, see Figure~\ref{fg:ptanalysis}.
+Since $\gamma_{\text{deph}}$ determines also the spectral broadening, we cannot choose it arbitrary small. For example in the present calculations we have chosen $1/\gamma_{\text{deph}}$ of 6 fs that corresponds to a broadening of approximately 0.2 eV (comparable with the experimental one) and thus we run the simulations for 50-55 fs.\\
+Once all the eigenfrequencies of the system are filtered out, the remaining polarization $\PP(t)$ is a periodic function of period $T_L =\frac{2\pi}{\omega_L}$, where $\omega_L$ is the frequency of the external perturbation and can be expanded in a Fourier series
+\be\label{eq:frrexp}
+\PP(t) = \sum_{n=-\infty}^{+\infty} \pp_n e^{-i\omega_n t},
+\ee  
+with $\omega_n = n \omega_L$, and complex coefficients:
+\begin{equation}\label{eq:frrcff}
+ \pp_n  = \mathscr{F}\{\PP(\omega_n)\} =\int_{0}^{T_L} dt \PP(t) e^{i\omega_n t}.
+\end{equation}
+To obtain the optical susceptibilities of order $n$ at frequency $\omega_L$ one needs to calculate the $\pp_n$ of Eq.~\eqref{eq:frrexp}, proportional to $\susc n$ by the $n$-th power of the $\efield_0$. 
+However, the expression in Eq.~\eqref{eq:frrcff} is not the most computationally convenient since one needs a very short time step---significantly shorter than the one needed to integrate the EOMs---to perform the integration with sufficient accuracy. As an alternative we use directly Eq.~\eqref{eq:frrexp}: we truncate the Fourier series to an order $S$ larger than the one of the response function we are interested in. We sample $2S+1$ values $\PP_i\equiv\PP(t_i)$ within a period $T_L$, as illustrated in Figure~\ref{fg:ptanalysis}. Then Eq.~\eqref{eq:frrexp} reads as a system of linear equations 
+\be
+{\cal F}_{in} p^\alpha_n = P^\alpha_i,
+\label{eq:fouinv}
+\ee 
+from which the component $p^\alpha_n$ of $\pp_n$ in the $\alpha$ direction is found by inversion of the $(2S+1)\times(2S+1)$ Fourier matrix ${\cal F}_{in} \equiv \exp(-i\omega_n t_i)$. We found that the second harmonic generation converges with S equal to 4 while the third harmonic requires S equal to 6. Finally we noticed that averaging averaging the results on more periods can slightly reduce the numerical error in the signal analysis. \\
+Alternatively one can opt for a slow switch on of the electric field as in Takimoto et al.,\cite{takimoto:154114} so that no eigenfrequencies of the system are excited, and avoid to introduce imaginary terms in the Hamiltonian. We found, however, that the latter approach also requires long simulations, and on the other hand, it is less straightforward to extract the $\susc n$.
+
+\section{Conclusions}
+%\section*{Acknowledgments}
+\section*{Acknowledgments}
+C.A. acknowledge B. Demoulin and  A. Saul for the management of the computer cluster \emph{Rosa}. ADD Acknowledgments project COLIBRI. 
+%\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliographystyle{apsrev4-1}
+\bibliography{shg_2d.bib,tpa.bib,gase.bib}
+\nolinenumbers
+\end{document}
