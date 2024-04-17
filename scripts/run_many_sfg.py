@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import numpy as np
 import subprocess
 import os
@@ -32,9 +34,9 @@ id_field   =2 # External field to modify
 # Loop on frequencies of the field id_field
 start=2.0
 end  =8.0
-nsteps=2
+nsteps=120
 
-mpirun="/usr/bin/mpirun -np 4"
+mpirun="/home/attacc/local_gfortran/bin/mpirun -np 10"
 yambo ="/home/attacc/SOFTWARE/yambo-bugfixes/bin/yambo_nl" 
 
 frange = np.linspace(start, end, nsteps, endpoint=False)
