@@ -1,0 +1,70 @@
+#                                                                     
+#  /$$     /$$ /$$$$$$  /$$      /$$ /$$$$$$$   /$$$$$$               
+# |  $$   /$$//$$__  $$| $$$    /$$$| $$__  $$ /$$__  $$              
+#  \  $$ /$$/| $$  \ $$| $$$$  /$$$$| $$  \ $$| $$  \ $$              
+#   \  $$$$/ | $$$$$$$$| $$ $$/$$ $$| $$$$$$$ | $$  | $$              
+#    \  $$/  | $$__  $$| $$  $$$| $$| $$__  $$| $$  | $$              
+#     | $$   | $$  | $$| $$\  $ | $$| $$  \ $$| $$  | $$              
+#     | $$   | $$  | $$| $$ \/  | $$| $$$$$$$/|  $$$$$$/              
+#     |__/   |__/  |__/|__/     |__/|_______/  \______/               
+#                                                                     
+# Version 5.2.0 Revision 22605 Hash (prev commit) 41358e38a           
+#                  Branch is nl-restart                               
+#            MPI+OpenMP+SLK+HDF5_MPI_IO Build                         
+#               http://www.yambo-code.org                             
+#
+nloptics                         # [R] Non-linear spectroscopy
+NLogCPUs=0                       # [PARALLEL] Live-timing CPU`s (0 for all)
+PAR_def_mode= "balanced"         # [PARALLEL] Default distribution mode ("balanced"/"memory"/"workload"/"KQmemory")
+NL_CPU= "2 1"                       # [PARALLEL] CPUs for each role
+NL_ROLEs= "w k"                     # [PARALLEL] CPUs roles (w,k)
+DIP_CPU= ""                      # [PARALLEL] CPUs for each role
+DIP_ROLEs= ""                    # [PARALLEL] CPUs roles (k,c,v)
+DIP_Threads=0                    # [OPENMP/X] Number of threads for dipoles
+NL_Threads=0                     # [OPENMP/NL] Number of threads for nl-optics
+% NLBands
+  3 |  6 |                           # [NL] Bands range
+%
+NLverbosity= "low"              # [NL] Verbosity level (low | high)
+NLtime=-1.000000           fs    # [NL] Simulation Time
+NLintegrator= "INVINT"         # [NL] Integrator ("EULEREXP/RK2/RK4/RK2EXP/HEUN/INVINT/CRANKNIC")
+NLCorrelation= "IPA"             # [NL] Correlation ("IPA/HARTREE/TDDFT/LRC/LRW/JGM/SEX")
+NLLrcAlpha= 0.000000             # [NL] Long Range Correction
+% NLEnRange
+ 0.200000 | 8.000000 |         eV    # [NL] Energy range (for loop on frequencies NLEnSteps/=0
+%
+NLEnSteps= 10                   # [NL] Energy steps for the loop on frequencies
+% NLrotaxis
+ 0.000000 | 0.000000 | 0.000000 |        # [NL] Rotation axis (for the loop on angles NLAngSteps/=0)
+%
+NLAngSteps=0                     # [NL] Angular steps (if NLAngSteps/=0 field versor will be ignored)
+NLDamping= 0.200000        eV    # [NL] Damping (or dephasing)
+RADLifeTime=-1.000000      fs    # [RT] Radiative life-time (if negative Yambo sets it equal to Phase_LifeTime in NL)
+#EvalCurrent                   # [NL] Evaluate the current
+#FrPolPerdic                   # [DIP] Force periodicity of polarization respect to the external field
+HARRLvcs= 18475            RL    # [HA] Hartree     RL components
+EXXRLvcs= 18475            RL    # [XX] Exchange    RL components
+% Field1_Freq
+ 0.100000 | 0.100000 |         eV    # [RT Field1] Frequency
+%
+Field1_NFreqs= 1                 # [RT Field1] Frequency
+Field1_Int=  1000.00       kWLm2 # [RT Field1] Intensity
+Field1_Width= 0.000000     fs    # [RT Field1] Width
+Field1_kind= "SOFTSIN"           # [RT Field1] Kind(SIN|SOFTSIN| see more on src/modules/mod_fields.F)
+Field1_pol= "linear"             # [RT Field1] Pol(linear|circular)
+% Field1_Dir
+ 0.000000 | 1.000000 | 0.000000 |        # [RT Field1] Versor
+%
+Field1_Tstart= 0.010000    fs    # [RT Field1] Initial Time
+% Field2_Freq
+ 2.000000 | 2.000000 |         eV    # [RT Field2] Frequency
+%
+Field2_NFreqs= 1                 # [RT Field1] Frequency
+Field2_Int=  1000.00       kWLm2 # [RT Field1] Intensity
+Field2_Width= 0.000000     fs    # [RT Field1] Width
+Field2_kind= "SOFTSIN"           # [RT Field1] Kind(SIN|SOFTSIN| see more on src/modules/mod_fields.F)
+Field2_pol= "linear"             # [RT Field1] Pol(linear|circular)
+% Field2_Dir
+ 0.000000 | 1.000000 | 0.000000 |        # [RT Field2] Versor
+%
+Field2_Tstart= 0.010000    fs    # [RT Field2] Initial Time
