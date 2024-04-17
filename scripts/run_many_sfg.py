@@ -34,9 +34,9 @@ id_field   =2 # External field to modify
 # Loop on frequencies of the field id_field
 start=2.0
 end  =8.0
-nsteps=120
+nsteps=10
 
-mpirun="/home/attacc/local_gfortran/bin/mpirun -np 10"
+mpirun="/usr/bin/mpirun -np 2"
 yambo ="/home/attacc/SOFTWARE/yambo-bugfixes/bin/yambo_nl" 
 
 frange = np.linspace(start, end, nsteps, endpoint=False)
@@ -45,4 +45,9 @@ for ifreq,freq in enumerate(frange):
         yambo_output="yambo.in_sfg_EF%d" % ifreq
         change_field_freq(yambo_input,yambo_output, 2, freq)
         yambo_command=yambo+" -F "+yambo_output+" -J EF%d " %ifreq
-        os.system(mpirun+"  "+yambo_command) 
+        try:
+            if os.system(mpirun+"  "+yambo_command) !=0 
+                raise Exception('Wrong command')
+        except:
+            print("Error running simulation "+str(ifreq))
+            break
