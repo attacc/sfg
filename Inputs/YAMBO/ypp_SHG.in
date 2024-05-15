@@ -1,0 +1,13 @@
+#
+nonlinear                        # [R] Non-linear response analysis
+Xorder= 5                        # Max order of the response/exc functions
+% TimeRange
+ 54.00000 | -1.00000 |         fs    # Time-window where processing is done
+%
+ETStpsRt= 201                    # Total Energy steps
+% EnRngeRt
+  2.10000 | 4.10000 |         eV    # Energy range
+%
+DampMode= "NONE"                 # Damping type ( NONE | LORENTZIAN | GAUSSIAN )
+DampFactor= 0.000000       eV    # Damping parameter
+PumpPATH= "none"                 # Path of the simulation with the Pump only

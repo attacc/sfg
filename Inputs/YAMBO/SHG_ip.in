@@ -1,0 +1,43 @@
+#
+nloptics                         # [R] Non-linear spectroscopy
+NLogCPUs= 0                       # [PARALLEL] Live-timing CPU`s (0 for all)
+NL_CPU= "96 1"                       # [PARALLEL] CPUs for each role
+NL_ROLEs= "w k"                     # [PARALLEL] CPUs roles (w,k)
+DIP_CPU= "1 2 2"                      # [PARALLEL] CPUs for each role
+DIP_ROLEs= "k c v"                    # [PARALLEL] CPUs roles (k,c,v)
+% NLBands
+   13 | 34 |                         # [NL] Bands range
+%
+NLverbosity= "high"              # [NL] Verbosity level (low | high)
+NLstep= 0.010000           fs    # [NL] Time step length
+NLtime=75.0           fs    # [NL] Simulation Time
+NLintegrator= "INVINT"           # [NL] Integrator ("EULEREXP/RK2/RK4/RK2EXP/HEUN/INVINT/CRANKNIC")
+NLCorrelation= "IPA"             # [NL] Correlation ("IPA/HARTREE/TDDFT/LRC/LRW/JGM/SEX")
+NLLrcAlpha= 0.000000             # [NL] Long Range Correction
+% NLEnRange
+ 0.2000000 | 8.000000 |         eV    # [NL] Energy range
+%
+NLEnSteps= 96                     # [NL] Energy steps
+NLDamping= 0.200000        eV    # [NL] Damping (or dephasing)
+RADLifeTime=-1.000000      fs    # [RT] Radiative life-time (if negative Yambo sets it equal to Phase_LifeTime in NL)
+Gauge= "length"                  # [BSE/X] Gauge (length|velocity)
+HARRLvcs= 125357           RL    # [HA] Hartree     RL components
+EXXRLvcs= 125357           RL    # [XX] Exchange    RL components
+GfnQPdb= "none"                  # [EXTQP G] Database action
+GfnQP_INTERP_NN= 1               # [EXTQP G] Interpolation neighbours (NN mode)
+GfnQP_INTERP_shells= 20.00000    # [EXTQP G] Interpolation shells (BOLTZ mode)
+GfnQP_DbGd_INTERP_mode= "NN"     # [EXTQP G] Interpolation DbGd mode
+% GfnQP_E
+ 0.000000 | 1.000000 | 1.000000 |        # [EXTQP G] E parameters  (c/v) eV|adim|adim
+%
+GfnQP_Z= ( 1.000000 , 0.000000 )         # [EXTQP G] Z factor  (c/v)
+% Field1_Freq
+ 0.100000 | 0.100000 |         eV    # [RT Field1] Frequency
+%
+Field1_NFreqs= 1                 # [RT Field1] Frequency
+Field1_Int=  1000.00       kWLm2 # [RT Field1] Intensity
+Field1_kind= "SIN"           # [RT Field1] Kind(SIN|COS|RES|ANTIRES|GAUSS|DELTA|QSSIN)
+Field1_pol= "linear"             # [RT Field1] Pol(linear|circular)
+% Field1_Dir
+ 0.000000 | 1.000000 | 0.000000 |        # [RT Field1] Versor
+%

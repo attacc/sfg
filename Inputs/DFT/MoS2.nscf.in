@@ -1,0 +1,32 @@
+&control
+    calculation  = 'nscf',
+    prefix       = '2H-MoS2',
+    pseudo_dir   = './',
+    outdir       = './tmp_01',
+    verbosity    = 'high'
+/
+&system
+    ibrav       = 4,
+    ecutwfc     = 75,
+    celldm(1)   = 5.952637215
+    celldm(3)   = 7.809523809
+    nat         = 6,
+    ntyp        = 2,
+    force_symmorphic = .true.
+    nbnd	=50
+/
+&electrons
+  diago_thr_init = 1.0D-5,
+/
+ATOMIC_SPECIES
+ S  32.065  S.dojo.upf
+ Mo 95.94   Mo.dojo.upf
+ATOMIC_POSITIONS {alat}
+ S             0.0000000000        0.5773502692       -1.6659093429
+ S             0.5000000000        0.2886751346        0.6660108111
+ S             0.0000000000        0.5773502692       -0.6660108111
+ S             0.5000000000        0.2886751346        1.6659093429
+ Mo            0.5000000000        0.2886751346       -1.1659745463
+ Mo            0.0000000000        0.5773502692        1.1659745463
+K_POINTS {automatic}
+ 42 42 1 0 0 0
